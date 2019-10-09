@@ -1,10 +1,11 @@
 package pl.interfacethread;
 
-import pl.watki.Countdown;
+import pl.longCalculation.LongCalculation;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class Interfacethreads {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
@@ -43,11 +44,25 @@ public class Interfacethreads {
          * określenie newCashedThreadPool
          * metoda do optymalizacji ilości wątków
          * */
-        ExecutorService executorService = Executors.newCachedThreadPool(); //metoda do tworzenia dynamicznej ilości wątków
+/*        ExecutorService executorService = Executors.newCachedThreadPool(); //metoda do tworzenia dynamicznej ilości wątków
         for (int i = 0; i < 100; i++) {
             executorService.submit(new Countdown()); //Countdown dziedziczy po Thread więc możemy wstawić new Countdown do submion()
-        }
+        }*/
+
+        /**
+         *
+         * */
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        Future<Integer> submit = executorService.submit(new LongCalculation());
+        Integer integer = submit.get();
+        executorService.shutdown();
     }
+
+    /**
+     * Dwa interfejsy do zapamiętania
+     * Runnable - wykonuje zadanie - nie zwraca wartości
+     * Callable - zwraca jakąś wartość
+     * */
 
 
 }
