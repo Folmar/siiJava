@@ -11,9 +11,9 @@ public class MainIO {
     public static void main(String[] args) throws IOException {
         List<Parameters> parametersList = new ArrayList<>();
         final String SEPARATOR = ";";
-        int rows = 20;
+        int rows = 20000;
 
-        for (int i = 0; i <= rows; i++) {
+        for (int i = 1; i <= rows; i++) {
             Parameters parameters = new Parameters();
             parameters.setId(Integer.toString(i));
             parameters.setMessageText("DUPA");
@@ -22,7 +22,7 @@ public class MainIO {
 
         File file = new File("message.csv");
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-        for (int i = 0; i <= rows; i++) {
+        for (int i = 0; i < rows; i++) {
             bufferedWriter.write(parametersList.get(i).getId() + SEPARATOR + parametersList.get(i).getMessageText() + SEPARATOR);
             bufferedWriter.newLine();
         }
