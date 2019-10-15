@@ -1,9 +1,6 @@
 package pl.iofiles;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +24,13 @@ public class MainIO {
             bufferedWriter.newLine();
         }
         bufferedWriter.close();
+
+        char[] line = new char[4096];
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+        while (bufferedReader.read(line) > -1) {
+            System.out.println(new String(line));
+        }
+        bufferedReader.close();
     }
 }
 
